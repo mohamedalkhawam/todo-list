@@ -48,7 +48,7 @@ export default function TasksListing() {
                   item.state === "done" ? "text-green-500" : "text-gray-400"
                 } cursor-pointer`}
                 size="1.4rem"
-                role="change state"
+                role="button"
                 onClick={() => {
                   updateTask("tasks", {
                     ...item,
@@ -58,24 +58,28 @@ export default function TasksListing() {
                   window.dispatchEvent(new Event("storage"));
                 }}
               />
-              <input
-                type="text"
-                defaultValue={item.text}
-                onBlur={(e: FormEvent<HTMLInputElement>) => {
-                  updateTask("tasks", {
-                    ...item,
-                    text: e.currentTarget.value,
-                    updated: new Date(),
-                  });
-                  window.dispatchEvent(new Event("storage"));
-                }}
-                onKeyDown={(e: any) => {
-                  if (e.keyCode === 13) {
-                    e?.target?.blur();
-                  }
-                }}
-                className=" appearance-none bg-transparent  focus:outline-none focus:border-none focus:ring-2 focus:ring-blue-500 rounded-md px-2"
-              />
+              <label>
+                <input
+                  id={item.id}
+                  type="text"
+                  defaultValue={item.text}
+                  placeholder="Task name"
+                  onBlur={(e: FormEvent<HTMLInputElement>) => {
+                    updateTask("tasks", {
+                      ...item,
+                      text: e.currentTarget.value,
+                      updated: new Date(),
+                    });
+                    window.dispatchEvent(new Event("storage"));
+                  }}
+                  onKeyDown={(e: any) => {
+                    if (e.keyCode === 13) {
+                      e?.target?.blur();
+                    }
+                  }}
+                  className=" appearance-none bg-transparent  focus:outline-none focus:border-none focus:ring-2 focus:ring-blue-500 rounded-md px-2"
+                />
+              </label>
             </div>
             <div className="flex items-center gap-x-3">
               <div
@@ -93,7 +97,7 @@ export default function TasksListing() {
               <AiOutlineDelete
                 className="text-red-400 cursor-pointer"
                 size="1.4rem"
-                role="delete"
+                role="button"
                 onClick={() => {
                   deleteTask("tasks", item.id);
                   window.dispatchEvent(new Event("storage"));

@@ -23,19 +23,21 @@ export default function AddTasks() {
   }
 
   return (
-    <section className="w-full  grid items-center grid-cols-4 gap-x-4">
-      <input
-        onChange={handleChangeTaskField}
-        value={task}
-        type="text"
-        placeholder="Add You Task"
-        onKeyDown={(e: any) => {
-          if (e.keyCode === 13) {
-            handleAddTasks();
-          }
-        }}
-        className=" col-span-3 p-1.5 rounded-md  outline-none focus:outline-none text-gray-300 tracking-wider shadow hover:shadow-md bg-gray-200/20 "
-      />
+    <section className="w-full  grid items-center grid-cols-4 gap-x-4 px-3">
+      <label className="block col-span-3 ">
+        <input
+          onChange={handleChangeTaskField}
+          value={task}
+          type="text"
+          placeholder="Add You Task"
+          onKeyDown={(e: any) => {
+            if (e.keyCode === 13) {
+              handleAddTasks();
+            }
+          }}
+          className="w-full p-1.5 rounded-md  outline-none focus:outline-none text-gray-300 tracking-wider shadow hover:shadow-md bg-gray-200/20 "
+        />
+      </label>
       <button
         onClick={handleAddTasks}
         disabled={isDisabled}
